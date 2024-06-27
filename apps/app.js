@@ -1,6 +1,7 @@
 const express = require('express')
 const mysql = require('mysql');
 const app = express()
+app.disable("x-powered-by");
 const path = require('path')
 require('dotenv').config();
 
@@ -20,14 +21,14 @@ app.get('/app2', (req, res) => {
   res.send('Hello this App 2!')
 });
 
+app.get('/zakaria', (req, res) => {
+  res.send('nama saya zakaria')
+});
+
 app.get('/users', (req, res, next) => {
   const sql = "SELECT * FROM tb_data ORDER BY id desc"
-  connection.query(sql,(error, fields) => {
-    if (error) {
-      console.log('error', error)
-    } else {
-      res.send(fields)
-    }
+  connection.query(sql,(fields) => {
+  res.send(fields)
   })
 });
 
